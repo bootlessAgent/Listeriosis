@@ -9,30 +9,27 @@
 import UIKit
 
 class ToDoListViewController: UITableViewController {
-
     
-    var itemArray = [Item]()
     
-    let defaults = UserDefaults.standard
+    var itemArray : [Item] = [Item]()
     
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-//        if let  items = defaults.array(forKey: "ListeriosisArray") as? [String] {
-//            itemArray = items
+        //        if let  items = defaults.array(forKey: "ListeriosisArray") as? [String] {
+        //            itemArray = items
         
-        let newItem = Item()
-        newItem.title = "Test1"
-        itemArray.append(newItem)
+    
+        loadData()
         
-        
-        if let items = defaults.array(forKey: "ListeriosisArray") as? [Item] {
-            itemArray = items
-        }
+        //        if let items = defaults.array(forKey: "ListeriosisArray") as? [Item] {
+        //            itemArray = items
+        //        }
         
     }
-
+    
     //MARK:  - TableView Datasource Methods
     
     
@@ -65,11 +62,11 @@ class ToDoListViewController: UITableViewController {
     
     //what happens when cell is clicked
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       // print(itemArray[indexPath.row])
+        // print(itemArray[indexPath.row])
         
-     itemArray[indexPath.row].done = !itemArray[indexPath.row].done
+        itemArray[indexPath.row].done = !itemArray[indexPath.row].done
         
-        tableView.reloadData()
+        saveData()
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -91,12 +88,10 @@ class ToDoListViewController: UITableViewController {
             
             let newItem = Item()
             newItem.title = textField.text!
-            
             self.itemArray.append(newItem)
             
-         self.defaults.set(self.itemArray, forKey: "ListeriosisArray")
+            self.saveData()
             
-            self.tableView.reloadData()
         }
         //Add textfield to alert
         alert.addTextField { (alertTextField) in
@@ -115,9 +110,35 @@ class ToDoListViewController: UITableViewController {
     }
     
     
+    //MARK: - Model Manipulation Methods
     
+    func saveData(){
+        let encoder = PropertyListEncoder()
+        
+        
+        do {
+            let data = try encoder.encode(itemArray)
+            
+            try data.write(to: dataFilePath!)
+        }catch {
+            print("Error writing Object array \(error)")
+        }
+        
+        self.tableView.reloadData()    }
     
-    
+    func loadData(){
+        
+        if let data = try? Data(contentsOf: dataFilePath!){
+            let decoder = PropertyListDecoder()
+            
+            do{
+            itemArray = try decoder.decode([Item].self, from: data)
+            }catch{
+                print("Error decoding data \(error)")
+            }
+        }
+        
+    }
     
 }
 
