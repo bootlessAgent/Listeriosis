@@ -31,7 +31,14 @@
                             <outlet property="delegate" destination="NSo-eS-Noq" id="YSd-D1-Hnw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Listeriosis" id="ZdR-vo-2tM"/>
+                    <navigationItem key="navigationItem" title="Listeriosis" id="ZdR-vo-2tM">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="27b-JY-hb0">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="addListItemButton:" destination="NSo-eS-Noq" id="Uw6-De-g1g"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ulu-g3-2dg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

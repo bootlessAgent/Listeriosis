@@ -11,12 +11,17 @@ import UIKit
 class ToDoListViewController: UITableViewController {
 
     
-    let itemArray = ["Do something","Do something else","one more doing"]
+    var itemArray = ["Do something","Do something else","one more doing"]
+    
+    let defaults = UserDefaults.standard
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        if let  items = defaults.array(forKey: "ListeriosisArray") as? [String] {
+            itemArray = items
+        }
         
         
     }
@@ -55,6 +60,42 @@ class ToDoListViewController: UITableViewController {
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    
+    //MARK: - Add new Items
+    @IBAction func addListItemButton(_ sender: UIBarButtonItem) {
+        
+        //creates an alert
+        let alert = UIAlertController(title: "Add new Item", message: "", preferredStyle: .alert)
+        
+        //create bigger scope textfield variable
+        
+        var textField = UITextField()
+        
+        //creates an action to take on alert button press
+        let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
+            //what happens once user clicks add item button on UIAlert
+            self.itemArray.append(textField.text ?? "")
+            
+            self.defaults.set(self.itemArray, forKey: "ListeriosisArray")
+            
+            self.tableView.reloadData()
+        }
+        //Add textfield to alert
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Create New item"
+            textField = alertTextField
+        }
+        
+        //calls new alert and adds action to it
+        alert.addAction(action)
+        
+        
+        
+        //presents alert when action is pressed
+        present(alert, animated: true, completion: nil)
+        
     }
     
     
