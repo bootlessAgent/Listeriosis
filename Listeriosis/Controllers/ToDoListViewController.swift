@@ -66,7 +66,9 @@ class ToDoListViewController: UITableViewController {
     //what happens when cell is clicked
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // print(itemArray[indexPath.row])
-        
+//        context.delete(itemArray[indexPath.row])
+//        itemArray.remove(at: indexPath.row)
+//
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
         
         saveData()
@@ -128,19 +130,67 @@ class ToDoListViewController: UITableViewController {
         
         self.tableView.reloadData()    }
     
-    func loadData(){
+    func loadData(with request: NSFetchRequest<Items> = Items.fetchRequest()){
         
-        let request : NSFetchRequest<Items> = Items.fetchRequest()
+     //   let request : NSFetchRequest<Items> = Items.fetchRequest()
         
         do {
           itemArray =  try  context.fetch(request)
         }catch{
             print("Error loading context \(error)")
         }
+        tableView.reloadData()
     }
     
     
     
 }
 
+extension ToDoListViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        //create data fetch request
+        let request: NSFetchRequest<Items> = Items.fetchRequest()
+        
+        //create a filter via nspredicate
+        //let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        
+        //apply filter to request
+        //request.predicate = predicate
+        
+        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        
+        //create sort via nssortdiscriptor
+//        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+//
+//        //apply sort to request
+//        request.sortDescriptors = [sortDescriptor]
+//
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
 
+
+        //fetch data
+//        do {
+//            itemArray =  try  context.fetch(request)
+//        }catch{
+//            print("Error loading context \(error)")
+//        }
+        
+        loadData(with: request)
+        
+        //reload data view
+        //tableView.reloadData()
+        
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchBar.text!.count == 0 {
+            loadData()
+            
+            DispatchQueue.main.async {
+            searchBar.resignFirstResponder()
+            }
+            
+        }
+    }
+}
