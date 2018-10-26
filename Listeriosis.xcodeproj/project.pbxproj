@@ -12,8 +12,9 @@
 		444647472175CEAC009EF8F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 444647452175CEAC009EF8F6 /* Main.storyboard */; };
 		444647492175CEAE009EF8F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444647482175CEAE009EF8F6 /* Assets.xcassets */; };
 		4446474C2175CEAE009EF8F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4446474A2175CEAE009EF8F6 /* LaunchScreen.storyboard */; };
+		44875FD321833A12003C61C9 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44875FD221833A12003C61C9 /* Item.swift */; };
+		44875FD521833A21003C61C9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44875FD421833A21003C61C9 /* Category.swift */; };
 		44A86EA5217F65A9006940A9 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A86EA4217F65A9006940A9 /* CategoryViewController.swift */; };
-		44BB71ED217633E3006E47BB /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44BB71EB217633E3006E47BB /* DataModel.xcdatamodeld */; };
 		D31FCE2BAF18FCEB4156F140 /* Pods_Listeriosis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC45AC0E2A1D316C413CD1F9 /* Pods_Listeriosis.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,8 +27,9 @@
 		444647482175CEAE009EF8F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4446474B2175CEAE009EF8F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4446474D2175CEAE009EF8F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44875FD221833A12003C61C9 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		44875FD421833A21003C61C9 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		44A86EA4217F65A9006940A9 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
-		44BB71EC217633E3006E47BB /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		58C82AAEC0A6167D63683655 /* Pods-Listeriosis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Listeriosis.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Listeriosis/Pods-Listeriosis.debug.xcconfig"; sourceTree = "<group>"; };
 		FC45AC0E2A1D316C413CD1F9 /* Pods_Listeriosis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Listeriosis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -86,7 +88,8 @@
 		4446475521760111009EF8F6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				44BB71EB217633E3006E47BB /* DataModel.xcdatamodeld */,
+				44875FD221833A12003C61C9 /* Item.swift */,
+				44875FD421833A21003C61C9 /* Category.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -248,10 +251,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44875FD321833A12003C61C9 /* Item.swift in Sources */,
 				44A86EA5217F65A9006940A9 /* CategoryViewController.swift in Sources */,
 				444647442175CEAC009EF8F6 /* ToDoListViewController.swift in Sources */,
-				44BB71ED217633E3006E47BB /* DataModel.xcdatamodeld in Sources */,
 				444647422175CEAC009EF8F6 /* AppDelegate.swift in Sources */,
+				44875FD521833A21003C61C9 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,19 +457,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		44BB71EB217633E3006E47BB /* DataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				44BB71EC217633E3006E47BB /* DataModel.xcdatamodel */,
-			);
-			currentVersion = 44BB71EC217633E3006E47BB /* DataModel.xcdatamodel */;
-			path = DataModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 444647362175CEAC009EF8F6 /* Project object */;
 }
