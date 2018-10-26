@@ -1,0 +1,6 @@
+framework module Pods_Listeriosis {
+  umbrella header "Pods-Listeriosis-umbrella.h"
+
+  export *
+  module * { export * }
+}
