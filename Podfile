@@ -8,6 +8,7 @@ target 'Listeriosis' do
   # Pods for Listeriosis
 
 pod 'RealmSwift'
+pod 'SwipeCellKit'
 
 
 end
